@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Spring Turbine Server
+name: spring-turbine-server
+version: 1.0.0
