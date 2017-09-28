@@ -22,14 +22,8 @@ data:
           enabled: false
 {{ end }}
   application.yaml: |+
-    spring:
-      rabbitmq:
-        addresses: {{ .Values.rabbitmq.url }}
-        host: {{ .Values.rabbitmq.host }}
-        port: {{ .Values.rabbitmq.port }}
-        username: {{ .Values.rabbitmq.username }}
-        password: {{ .Values.rabbitmq.password }}
-        virtual-host: {{ .Values.rabbitmq.virtualHost }}
-        ssl:
-          enabled: {{ .Values.rabbitmq.sslEnabled }}
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: {{ .Values.eureka.client.serviceUrl.defaultZone }}
 {{ end }}

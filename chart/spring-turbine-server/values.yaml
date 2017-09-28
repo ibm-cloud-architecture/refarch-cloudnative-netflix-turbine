@@ -23,12 +23,9 @@ spring:
       enabled: false
       uri:
 
-rabbitmq:
-  url:
-  host:
-  port:
-  username:
-  password:
-  virtualHost:
-  sslEnabled: 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:
+      
 
