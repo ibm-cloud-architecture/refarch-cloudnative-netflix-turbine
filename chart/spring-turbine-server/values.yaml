@@ -9,7 +9,7 @@ image:
   pullPolicy: Always
 
 service:
-  name: turbine-server
+  name:
   type: ClusterIP
   port: 8989
   internalPort: 8989
