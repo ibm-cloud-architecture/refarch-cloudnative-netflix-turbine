@@ -3,8 +3,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}-turbine-server
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
     component: turbine-server
 data:
   bootstrap.yaml: |+
@@ -22,14 +25,10 @@ data:
           enabled: false
 {{ end }}
   application.yaml: |+
-    spring:
-      rabbitmq:
-        addresses: {{ .Values.rabbitmq.url }}
-        host: {{ .Values.rabbitmq.host }}
-        port: {{ .Values.rabbitmq.port }}
-        username: {{ .Values.rabbitmq.username }}
-        password: {{ .Values.rabbitmq.password }}
-        virtual-host: {{ .Values.rabbitmq.virtualHost }}
-        ssl:
-          enabled: {{ .Values.rabbitmq.sslEnabled }}
+    eureka:
+      client:
+        fetchRegistry: true
+        registerWithEureka: true
+        serviceUrl:
+          defaultZone: {{ .Values.eureka.client.serviceUrl.defaultZone }}
 {{ end }}
