@@ -28,7 +28,7 @@ data:
     eureka:
       client:
         fetchRegistry: true
-
+        registerWithEureka: true
         serviceUrl:
           defaultZone: {{ .Values.eureka.client.serviceUrl.defaultZone }}
 {{ end }}
