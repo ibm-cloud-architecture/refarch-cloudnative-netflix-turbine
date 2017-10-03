@@ -1,4 +1,5 @@
-{{ if .Values.config.existingConfigMapName }}
+{{ if .Values.global.useConfigServerBootstrap }}
+{{ else if .Values.config.existingConfigMapName }}
 {{ else }}
 apiVersion: v1
 kind: ConfigMap
@@ -12,7 +13,7 @@ metadata:
 data:
   bootstrap.yaml: |+
     server:
-      port: {{ .Values.service.internalPort }}
+      port: {{ .Values.service.stream.internalPort }}
     spring:
       application:
         name: turbine-server
@@ -25,10 +26,27 @@ data:
           enabled: false
 {{ end }}
   application.yaml: |+
+    management:
+      port: {{ .Values.service.mgmt.internalPort }}
+
     eureka:
       client:
         fetchRegistry: true
         registerWithEureka: true
         serviceUrl:
           defaultZone: {{ .Values.eureka.client.serviceUrl.defaultZone }}
+
+    spring:
+      rabbitmq:
+        addresses: {{ .Values.rabbitmq.url }}
+        host: {{ .Values.rabbitmq.host }}
+        port: {{ .Values.rabbitmq.port }}
+        username: {{ .Values.rabbitmq.username }}
+        password: {{ .Values.rabbitmq.password }}
+        virtual-host: {{ .Values.rabbitmq.virtualHost }}
+{{ if .Values.rabbitmq.sslEnabled }}
+        ssl:
+          enabled: {{ .Values.rabbitmq.sslEnabled }}
+{{ end }}
+
 {{ end }}

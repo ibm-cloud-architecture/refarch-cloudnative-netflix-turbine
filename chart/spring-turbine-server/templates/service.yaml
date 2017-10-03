@@ -15,7 +15,11 @@ spec:
   type: {{ .Values.service.type }}
   ports:
   - name: stream
-    port: {{ .Values.service.port }}
-    targetPort: {{ .Values.service.internalPort }}
+    port: {{ .Values.service.stream.port }}
+    targetPort: {{ .Values.service.stream.nternalPort }}
+  - name: mgmt 
+    port: {{ .Values.service.mgmt.port }}
+    targetPort: {{ .Values.service.mgmt.internalPort }}
+
   selector:
     component: turbine-server

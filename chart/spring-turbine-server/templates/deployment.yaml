@@ -21,15 +21,13 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - name: stream
-          containerPort: {{ .Values.service.internalPort }}
+          containerPort: {{ .Values.service.stream.internalPort }}
+        - name: mgmt
+          containerPort: {{ .Values.service.mgmt.internalPort }}
         volumeMounts:
         - mountPath: /config
           name: turbine-server-config
       volumes:
       - name: turbine-server-config
-        configMap:
-{{ if .Values.config.existingConfigMapName }}
-          name: {{ .Values.config.existingConfigMapName }}
-{{ else }}
-          name: {{ .Release.Name }}-{{ .Chart.Name }}
-{{ end }}
+{{ include "configServerBootstrap" . }}
+

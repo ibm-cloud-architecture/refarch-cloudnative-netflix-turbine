@@ -11,8 +11,12 @@ image:
 service:
   name:
   type: ClusterIP
-  port: 8989
-  internalPort: 8989
+  stream:
+    port: 8989
+    internalPort: 8989
+  mgmt:
+    port: 8990
+    internalPort: 8990
 
 config:
   existingConfigMapName:
@@ -28,4 +32,14 @@ eureka:
     serviceUrl:
       defaultZone:
       
+rabbitmq:
+  url:
+  host:
+  port:
+  username:
+  password:
+  virtualHost:
+  sslEnabled: 
 
+global:
+  useConfigServerBootstrap: false
