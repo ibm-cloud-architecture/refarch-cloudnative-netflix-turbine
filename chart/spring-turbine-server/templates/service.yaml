@@ -16,7 +16,7 @@ spec:
   ports:
   - name: stream
     port: {{ .Values.service.stream.port }}
-    targetPort: {{ .Values.service.stream.nternalPort }}
+    targetPort: {{ .Values.service.stream.internalPort }}
   - name: mgmt 
     port: {{ .Values.service.mgmt.port }}
     targetPort: {{ .Values.service.mgmt.internalPort }}
