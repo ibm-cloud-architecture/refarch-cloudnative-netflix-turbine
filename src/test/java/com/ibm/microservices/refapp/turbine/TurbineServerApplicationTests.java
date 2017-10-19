@@ -7,6 +7,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+//The commented line below come from the RESILIENCY branch for Spring RabbitMQ.
+//@SpringBootTest( properties = { "spring.cloud.discovery.enabled:false" } )
 public class TurbineServerApplicationTests {
 
 	@Test

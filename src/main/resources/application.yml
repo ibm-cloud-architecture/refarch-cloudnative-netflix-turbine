@@ -23,6 +23,12 @@ turbine:
     WHATS-FOR-DINNER: :9181/hystrix.stream
     #default: :9180/hystrix.stream   # 'default' equals CLUSTER NAME
 
+# The commented lines below come from the RESILIENCY branch for Spring RabbitMQ.
+
+#spring:
+#  rabbitmq:
+#    addresses: ${vcap.services.cloudamqp-wfd-resiliency.credentials.uri}
+
 ---
 spring:
   profiles: cloud
